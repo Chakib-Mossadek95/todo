@@ -1,6 +1,12 @@
 import mongoose from "mongoose"; //importer mongoose et schema
-const uri = "mongodb+srv://chakib:cms@cluster0.ywg8u.mongodb.net/todo_app?retryWrites=true&w=majority"; //definir varrieble prend uri du mongodb
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }); //connecter mongoose et ajouter les
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb+srv://chakib:cms@cluster0.ywg8u.mongodb.net/todo_app?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+  }
+); //connecter mongoose et ajouter les
 
 const TodoSchema = new mongoose.Schema({
   //cree schema  constien name et completed

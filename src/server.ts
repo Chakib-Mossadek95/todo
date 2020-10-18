@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 app.use("/", express.static("public")); //fournier des fichier static son nom est public dans le meme fichier du projet
 app.use("/Todo", todoRouter); //path /todo utilise le routeur todorouter
 // static folder
-const port = 3002; //utilise le port 3002 pour le serveurrecue les requettes
+const port = process.env.PORT || 3002; //utilise le port 3002 pour le serveurrecue les requettes
 app.listen(port, () => {
   //listening en utilissant le port 3002 et function callback qui affiche un message
   // tslint:disable-next-line: no-console

@@ -1,15 +1,19 @@
 const listDOM = document.getElementById("list");
 const addTodosdata = document.getElementById("todo-input");
+const port = location.port;
+const url11 = "http://127.0.0.1:" + port + "/todo";
+
 let todosList = [];
 const getTodos = () => {
   const xhr = new XMLHttpRequest();
-  xhr.open("GET");
+  xhr.open("GET", url1);
   xhr.responseType = "json";
   xhr.onload = () => {
     todosList = xhr.response;
     renderTodos();
     console.log(todosList, "response mongo");
     console.log("this is the script", port);
+    console.log(url11);
   };
   xhr.send();
 };
@@ -33,7 +37,7 @@ const addTodos = () => {
   let data;
   const request1 = new XMLHttpRequest();
   request1.responseType = "json";
-  request1.open("POST");
+  request1.open("POST", url1);
   request1.setRequestHeader("Content-Type", "application/json");
   request1.onload = () => {
     data = request1.response;
@@ -65,7 +69,7 @@ const updatedTodos = (value, todo) => {
   todo.data = value;
   const request1 = new XMLHttpRequest();
   request1.responseType = "json";
-  request1.open("PUT");
+  request1.open("PUT", url1);
   request1.setRequestHeader("Content-Type", "application/json");
   request1.send(JSON.stringify(todo));
   request1.onload = () => {
@@ -92,7 +96,7 @@ const deleteTodos = (input) => {
   let data;
   const request1 = new XMLHttpRequest();
   request1.responseType = "json";
-  request1.open("DELETE");
+  request1.open("DELETE", url1);
   request1.setRequestHeader("Content-Type", "application/json");
   request1.onload = () => {
     data = request1.response;
@@ -133,6 +137,7 @@ function renderTodos() {
 }
 getTodos();
 renderTodos();
+
 function createCheckbox(a, todo) {
   var check = document.createElement("input");
   check.type = "checkbox";
@@ -156,7 +161,7 @@ const completeTodos = (todo) => {
   let data;
   const request1 = new XMLHttpRequest();
   request1.responseType = "json";
-  request1.open("put");
+  request1.open("put", url1);
   request1.setRequestHeader("Content-Type", "application/json");
   request1.onload = () => {
     data = request1.response;

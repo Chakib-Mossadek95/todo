@@ -11,7 +11,7 @@ app.use((req, res, next) => {
 });
 app.use("/", express.static("public"));
 app.use("/Todo", todoRouter);
-export const port = process.env.PORT;
+const port = process.env.PORT;
 app.listen(port, () => {
   // tslint:disable-next-line: no-console
   console.log(`listening on port ${port}`);

@@ -1,4 +1,4 @@
-import mongoose from "mongoose"; //importer mongoose et schema
+import mongoose from "mongoose";
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb+srv://chakib:cms@cluster0.ywg8u.mongodb.net/todo_app?retryWrites=true&w=majority",
   {
@@ -6,14 +6,11 @@ mongoose.connect(
     useUnifiedTopology: true,
     useFindAndModify: false
   }
-); //connecter mongoose et ajouter les
-
+);
 const TodoSchema = new mongoose.Schema({
-  //cree schema  constien name et completed
   name: { type: String, required: true },
   completed: { type: Boolean, default: false },
   editing: { type: Boolean, default: false }
 });
-
-const Todo = mongoose.model("todo", TodoSchema); //cree modele
-export { Todo }; //exporter model
+const Todo = mongoose.model("todo", TodoSchema);
+export { Todo };

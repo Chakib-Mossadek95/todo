@@ -1,25 +1,17 @@
-import { Todo } from "./model"; //importer todo
+import { Todo } from "./model";
 const getTodosList = () => {
-  //cree fonction gettodolist
-  return Todo.find({}); //retourner la list du mongodb apres retourner tous les objet dans la base de donnee
+  return Todo.find({});
 };
-
 const updateTodoList = (_id: string, name: string, completed: boolean) => {
-  //cree fonction updateTodolist
-  return Todo.findByIdAndUpdate(_id, { name, completed }, { new: true }); // utilise le model et chercher dans mongidb et update element trouver par id
+  return Todo.findByIdAndUpdate(_id, { name, completed }, { new: true });
 };
 const deletedTodoList = (_id: string) => {
-  //creee fonction delete
-  return Todo.findByIdAndDelete(_id); //// utilise le model et chercher dans mongidb et delete element trouver par id
+  return Todo.findByIdAndDelete(_id);
 };
-
 const addTodoList = (data: string) => {
-  // cree fonction addtodolist
   const newTodo = new Todo({
-    //cree elemnt du modele todo
-    name: data //affecter le nom
+    name: data
   });
-  return newTodo.save(); //enregister l element
+  return newTodo.save();
 };
-
-export { deletedTodoList, updateTodoList, addTodoList, getTodosList }; // exporter les fonction procede
+export { deletedTodoList, updateTodoList, addTodoList, getTodosList };

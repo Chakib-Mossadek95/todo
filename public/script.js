@@ -1,22 +1,18 @@
-// DOM Caching
-const url = "http://127.0.0.1:3002/todo";
 const listDOM = document.getElementById("list");
 const addTodosdata = document.getElementById("todo-input");
-// Todos list
 let todosList = [];
 const getTodos = () => {
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", url);
+  xhr.open("GET");
   xhr.responseType = "json";
   xhr.onload = () => {
     todosList = xhr.response;
     renderTodos();
     console.log(todosList, "response mongo");
+    console.log("this is the script", port);
   };
   xhr.send();
 };
-///////////////////////////////////////////////////////////////////////////////
-//////////////////////////// add new todo /////////////////////////////////////
 addTodosdata.addEventListener("keypress", function (e) {
   if (13 == e.keyCode) {
     addTodoToList(todosList, addTodosdata.value);
@@ -37,7 +33,7 @@ const addTodos = () => {
   let data;
   const request1 = new XMLHttpRequest();
   request1.responseType = "json";
-  request1.open("POST", url);
+  request1.open("POST");
   request1.setRequestHeader("Content-Type", "application/json");
   request1.onload = () => {
     data = request1.response;
@@ -45,8 +41,6 @@ const addTodos = () => {
   };
   request1.send(JSON.stringify({ input: addTodosdata.value }));
 };
-////////////////////////////////////////////////////////////
-///////////////////// input ///////////////////////////////
 function createInput(a, todo) {
   var input1 = document.createElement("INPUT");
   if (todo.completed === true) {
@@ -71,7 +65,7 @@ const updatedTodos = (value, todo) => {
   todo.data = value;
   const request1 = new XMLHttpRequest();
   request1.responseType = "json";
-  request1.open("PUT", url);
+  request1.open("PUT");
   request1.setRequestHeader("Content-Type", "application/json");
   request1.send(JSON.stringify(todo));
   request1.onload = () => {
@@ -80,8 +74,6 @@ const updatedTodos = (value, todo) => {
     renderTodos();
   };
 };
-////////////////////////////////////////////////////////////////////
-/////////////////////// delete ////////////////////////////////////
 function createDelete(a, todo) {
   var btn1 = document.createElement("BUTTON");
   btn1.innerHTML = "delete";
@@ -100,7 +92,7 @@ const deleteTodos = (input) => {
   let data;
   const request1 = new XMLHttpRequest();
   request1.responseType = "json";
-  request1.open("DELETE", url);
+  request1.open("DELETE");
   request1.setRequestHeader("Content-Type", "application/json");
   request1.onload = () => {
     data = request1.response;
@@ -108,8 +100,6 @@ const deleteTodos = (input) => {
   };
   request1.send(JSON.stringify({ _id: input }));
 };
-//////////////////////////////////////////////////////////////////////////
-////////////////////////////////// text //////////////////////////////////
 function createtext(a, todo) {
   var text = document.createElement("Label");
   text.innerHTML = todo.name;
@@ -123,7 +113,6 @@ function createtext(a, todo) {
   });
   a.appendChild(text);
 }
-//////////////////////////render////////////////////////////
 function renderTodos() {
   let olDOM = document.createElement("OL");
   listDOM.innerHTML = "";
@@ -142,13 +131,8 @@ function renderTodos() {
   });
   listDOM.appendChild(olDOM);
 }
-// ol class='ordredlist'   >  <li class='list-item' >
 getTodos();
 renderTodos();
-
-//////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////
-///////////////// checkbox //////////////
 function createCheckbox(a, todo) {
   var check = document.createElement("input");
   check.type = "checkbox";
@@ -172,7 +156,7 @@ const completeTodos = (todo) => {
   let data;
   const request1 = new XMLHttpRequest();
   request1.responseType = "json";
-  request1.open("put", url);
+  request1.open("put");
   request1.setRequestHeader("Content-Type", "application/json");
   request1.onload = () => {
     data = request1.response;

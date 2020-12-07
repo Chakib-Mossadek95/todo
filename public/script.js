@@ -1,7 +1,7 @@
 const listDOM = document.getElementById("list");
 const addTodosdata = document.getElementById("todo-input");
-const port = location.port;
-const url11 = "http://127.0.0.1:" + port + "/todo";
+const port = 3500;
+const url1 = "/todo";
 
 let todosList = [];
 const getTodos = () => {
@@ -13,7 +13,6 @@ const getTodos = () => {
     renderTodos();
     console.log(todosList, "response mongo");
     console.log("this is the script", port);
-    console.log(url11);
   };
   xhr.send();
 };
